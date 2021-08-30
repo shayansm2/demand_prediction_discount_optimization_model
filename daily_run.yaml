@@ -1,0 +1,33 @@
+---
+  get_asrt_data:
+      directory: data/{}/asrt_data.csv 
+      inputs:
+
+  optimum_discount_suggestion:
+      directory: data/{}/optimum_discount_suggestion_results.csv 
+      inputs:
+        f_factor: data/{}/F_factor_result.csv
+        asrt_data: data/{}/asrt_data.csv 
+        initial_point: data/{}/initial_point_result.csv 
+
+  modify_discounts_by_pc1:
+    directory: data/{}/improved_discount_suggestion_results.csv
+    inputs:
+      optimum_discount_suggestion: data/{}/optimum_discount_suggestion_results.csv
+      leafcats_gross_margins: data/{}/leafcats_gross_margins.csv
+
+  add_abc_analysis_flag:
+    directory: data/{}/final_results.csv
+    inputs:
+      optimum_discount_suggestion: data/{}/improved_discount_suggestion_results.csv
+      gross_margins: data/{}/gross_margin_data.csv
+
+   insert_to_db:
+       directory:
+       inputs:
+         optimum_discount_suggestion: data/{}/final_results.csv
+  
+  insert_to_db_bi:
+      directory: 
+      inputs:
+        optimum_discount_suggestion: data/{}/final_results.csv 

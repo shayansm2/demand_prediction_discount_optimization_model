@@ -1,0 +1,47 @@
+   get_asrt_data:
+       directory: data/{}/asrt_data.csv
+       inputs:
+
+   optimum_discount_suggestion:
+       directory: data/{}/optimum_discount_suggestion_results.csv
+       inputs:
+         f_factor: data/{}/F_factor_result_monthly.csv
+         asrt_data: data/{}/asrt_data.csv
+         initial_point: data/{}/initial_point_result.csv
+
+   modify_discounts_by_pc1:
+     directory: data/{}/improved_discount_suggestion_results.csv
+     inputs:
+       optimum_discount_suggestion: data/{}/optimum_discount_suggestion_results.csv
+       leafcats_gross_margins: data/{}/leafcats_gross_margins.csv
+
+   get_hourly_sales_weights:
+       directory: data/{}/hourly_sales_weights.csv
+       inputs:
+
+   get_hourly_stock_data_initial:
+       directory: data/{}/hourly_stock_data.csv
+       inputs:
+         weights: data/{}/hourly_sales_weights.csv
+
+   add_hourly_stock:
+       directory: data/{}/sales_and_hourly_stock_data.csv
+       inputs:
+         sales_data: data/{}/monthly_sales_data.csv
+         hourly_stock_data: data/{}/hourly_stock_data.csv
+
+   discount_bucket:
+       directory: data/{}/discount_bucket_result.csv
+       inputs:
+         sales_data: data/{}/monthly_sales_data.csv
+
+   integrate_data:
+       directory: data/{}/integrate_data_result.csv
+       inputs:
+         sales_and_hourly_stock_data: data/{}/sales_and_hourly_stock_data.csv
+         discount_bucket: data/{}/discount_bucket_result.csv
+
+
+  get_hourly_sales_weights:
+      directory: data/{}/hourly_sales_weights.csv
+      inputs:

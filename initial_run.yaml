@@ -1,0 +1,53 @@
+---
+  get_sales_data: 
+      directory: data/{}/sales_data.csv 
+      inputs:
+
+  get_hourly_sales_weights:
+      directory: data/{}/hourly_sales_weights.csv
+      inputs:
+
+  get_hourly_stock_data_initial:
+      directory: data/{}/hourly_stock_data.csv
+      inputs: 
+        weights: data/{}/hourly_sales_weights.csv
+
+  add_hourly_stock:
+      directory: data/{}/sales_and_hourly_stock_data.csv 
+      inputs: 
+        sales_data: data/{}/sales_data.csv 
+        hourly_stock_data: data/{}/hourly_stock_data.csv 
+
+  discount_bucket:
+      directory: data/{}/discount_bucket_result.csv 
+      inputs:
+        sales_data: data/{}/sales_data.csv
+
+  integrate_data:
+      directory: data/{}/integrate_data_result.csv 
+      inputs:
+        sales_and_hourly_stock_data: data/{}/sales_and_hourly_stock_data.csv 
+        discount_bucket: data/{}/discount_bucket_result.csv 
+
+  initial_point_indicator:
+      directory: data/{}/initial_point_result.csv 
+      inputs:
+        integrate_data: data/{}/integrate_data_result.csv
+
+  sales_aggregation:
+      directory: data/{}/sales_aggregation_result.csv 
+      inputs:
+        integrate_data: data/{}/integrate_data_result.csv 
+
+  f_factor_calculation:
+      directory: data/{}/F_factor_result.csv 
+      inputs:
+         sales_affregation: data/{}/sales_aggregation_result.csv 
+  
+  get_last_30_days_margin:
+      directory: data/{}/gross_margin_data.csv
+      inputs:
+
+  get_last_30_days_pc1PerUnit_per_leafcat:
+      directory: data/{}/leafcats_gross_margins.csv
+      inputs:
